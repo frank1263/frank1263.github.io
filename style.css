@@ -1,0 +1,293 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffeaf4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ENCABEZADO Y PIE DE PÁGINA */
+header {
+  text-align: center;
+  margin: 40px 0 20px;
+  opacity: 0;
+}
+
+footer {
+  margin: 40px 0 20px;
+  font-size: 0.9rem;
+  color: #999;
+  opacity: 0;
+}
+
+header .brand {
+  color: #5e60ce;
+  font-weight: bold;
+}
+
+/* BOTÓN DE REGRESO */
+.back-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #e0e0ff;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #b2b2ff;
+}
+
+/* GRID DE TARJETAS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  padding: 20px;
+  width: 90%;
+  opacity: 0;
+}
+
+/* TARJETAS DE IDIOMA Y RECURSOS */
+.language-box,
+.resource-box {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.language-box:hover,
+.resource-box:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* FLAGS */
+.language-box .flag {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.language-box .bg-flag {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  font-size: 5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.language-box:hover .bg-flag {
+  opacity: 0.15;
+}
+
+.language-box.add {
+  background-color: #e0e0ff;
+  color: #444;
+  font-weight: bold;
+}
+
+/* IMÁGENES EN RECURSOS */
+.resource-box img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* HOVERS PERSONALIZADOS MÁS FUERTES */
+.resource-box.duolingo:hover {
+  background-color: #2a9d8f; /* verde más fuerte */
+  color: white;
+}
+
+.resource-box.busuu:hover {
+  background-color: #0077b6; /* azul más fuerte */
+  color: white;
+}
+
+/* 🎬 PANTALLA DE CARGA */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e8f0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease 2s forwards;
+}
+
+.loader-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #5e60ce;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0;
+  animation: popIn 1.2s ease forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ✨ ANIMACIONES ENTRADA */
+body.loaded header {
+  animation: slideDown 0.8s ease forwards;
+}
+
+body.loaded .grid {
+  animation: fadeUp 1s ease 0.3s forwards;
+}
+
+body.loaded footer {
+  animation: slideUp 0.8s ease 1s forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 🌬️ Burbujas flotantes */
+.floating-deco {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: floaty 8s infinite ease-in-out;
+  filter: blur(1px);
+}
+
+@keyframes floaty {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-20px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Burbujas en esquinas */
+.bubble.one { width: 60px; height: 60px; background-color: #5e60ce; top: 100px; right: 30px; animation-delay: 0s; }
+.bubble.two { width: 40px; height: 40px; background-color: #7b9eff; top: 180px; right: 60px; animation-delay: 1s; }
+.bubble.three { width: 25px; height: 25px; background-color: #95b8ff; top: 250px; right: 20px; animation-delay: 2.5s; }
+.bubble.four { width: 45px; height: 45px; background-color: #b8c0ff; bottom: 80px; left: 30px; animation-delay: 0.5s; }
+.bubble.five { width: 30px; height: 30px; background-color: #d0d8ff; bottom: 150px; left: 70px; animation-delay: 1.8s; }
+.bubble.six { width: 20px; height: 20px; background-color: #e0e7ff; bottom: 230px; left: 40px; animation-delay: 3s; }
+
+/* 🌊 Ondas decorativas */
+.wave-container {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+  z-index: -2;
+}
+
+.wave-container svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.top-wave { margin-bottom: -20px; }
+.bottom-wave { margin-top: -20px; }
+.resource-box.duolingo:hover {
+  background-color: #2a9d8f; /* verde fuerte */
+  color: white;
+}
+
+.resource-box.busuu:hover {
+  background-color: #0077b6; /* azul fuerte */
+  color: white;
+}
+.locked-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.lock-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.lock-box h2 {
+  color: #5e60ce;
+  margin-bottom: 15px;
+}
+
+.lock-box .qr {
+  width: 200px;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.lock-box .small-text {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.fake-btn {
+  display: inline-block;
+  background-color: #5e60ce;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.fake-btn:hover {
+  background-color: #3f47a3;
+}
+
+
